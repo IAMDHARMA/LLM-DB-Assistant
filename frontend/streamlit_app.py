@@ -3,7 +3,7 @@ import requests
 
 st.set_page_config(page_title="LLM DB Assistant", layout="wide")
 
-API = st.text_input('Backend URL', value='http://localhost:8000')
+API = st.text_input('Backend URL', value='https://llm-db-assistant.onrender.com')
 
 
 st.title('💽 LLM DB Assistant — Demo')
