@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+mysql-connector-python
+pydantic
+requests
+python-dotenv
+google.genai
+pandas
+streamlit
+cryptography
+google-generativeai
