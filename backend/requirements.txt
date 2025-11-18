@@ -11,3 +11,5 @@ pandas
 streamlit
 cryptography
 google-generativeai
+flask_cors
+Flask

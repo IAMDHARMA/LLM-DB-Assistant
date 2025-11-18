@@ -1,12 +1,27 @@
-# main.py
 import logging
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
 from .model import DBConnectionCreate, AskRequest
 from .db_manager import save_connection, test_connection, run_readonly_query
 from .schema_fetcher import fetch_schema
 from .llm_agent import generate_sql
 from .sql_validator import is_safe_sql
+
+# Create FastAPI app
+app = FastAPI(title="LLM DB Assistant")
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # You can restrict this later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 # basic logging
 logging.basicConfig(level=logging.INFO)
@@ -14,6 +29,17 @@ logger = logging.getLogger("llm-db-assistant")
 
 app = FastAPI(title="LLM DB Assistant")
 
+
+
+
+@app.get("/")
+def home():
+    return {
+        "service": "LLM DB Assistant Backend",
+        "status": "running",
+        "docs": "/docs",
+        "author": "Dharmarajan"
+    }
 
 @app.post("/connect")
 def connect(cfg: DBConnectionCreate):
